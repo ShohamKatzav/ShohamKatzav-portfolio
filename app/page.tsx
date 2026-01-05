@@ -41,8 +41,8 @@ export default function Portfolio() {
       github: "https://github.com/ShohamKatzav/PCMarketPlace",
       demo: "https://pc-market-place.vercel.app/",
       credentials: [
-        { authorization: "admin", username: "shoham", password: "Pa$w0rd" },
-        { authorization: "user", username: "caitlin", password: "Pa$w0rd" }
+        { authorization: "admin", username: "shoham", password: "Pa$$w0rd" },
+        { authorization: "user", username: "caitlin", password: "Pa$$w0rd" }
       ]
     },
     {
@@ -52,7 +52,7 @@ export default function Portfolio() {
       github: "https://github.com/ShohamKatzav/react-express-crud",
       demo: "https://todo-app-topaz-psi.vercel.app/",
       credentials: [
-        { username: "shoham@gmail.com", password: "Pa$w0rd" }
+        { username: "shoham@gmail.com", password: "Pa$$w0rd" }
       ]
     }
   ];
