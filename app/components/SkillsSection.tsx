@@ -12,7 +12,7 @@ export default function SkillsSection() {
                         {fullStackSkillsData.map((skill: string, idx: number) => (
                             <span
                                 key={idx}
-                                className="px-4 py-2 bg-slate-800/60 backdrop-blur-sm text-gray-300 rounded-full text-sm border border-slate-700/50"
+                                className="px-4 py-2 bg-slate-800/60 md:backdrop-blur-sm text-gray-300 rounded-full text-sm border border-slate-700/50"
                             >
                                 {skill}
                             </span>
@@ -25,7 +25,7 @@ export default function SkillsSection() {
                         {qaSkillsData.map((skill: string, idx: number) => (
                             <span
                                 key={idx}
-                                className="px-4 py-2 bg-slate-800/60 backdrop-blur-sm text-gray-300 rounded-full text-sm border border-slate-700/50"
+                                className="px-4 py-2 bg-slate-800/60 md:backdrop-blur-sm text-gray-300 rounded-full text-sm border border-slate-700/50"
                             >
                                 {skill}
                             </span>
