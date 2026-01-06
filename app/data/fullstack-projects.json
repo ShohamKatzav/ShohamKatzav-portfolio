@@ -1,0 +1,90 @@
+[
+    {
+        "title": "We Communicate",
+        "tech": "Next.js, Socket.io, MongoDB",
+        "description": "Real-time chat application demonstrating WebSocket communication, authentication flow, and persistent message storage using MongoDB.",
+        "github": "https://github.com/ShohamKatzav/WeCommunicate-NextJs",
+        "demo": "https://wecommunicate-nextjs.onrender.com/",
+        "credentials": [
+            {
+                "username": "shoham@gmail.com",
+                "password": "12345678"
+            },
+            {
+                "username": "skgladiator3@gmail.com",
+                "password": "12345678"
+            }
+        ],
+        "features": [
+            "Real-time messaging using Socket.io",
+            "User authentication and session handling",
+            "Persistent message history stored in MongoDB",
+            "Conversation-based chat structure",
+            "Responsive UI for desktop and mobile"
+        ],
+        "challenges": "Managing WebSocket connections alongside Next.js routing and API routes. Ensured stable message delivery and proper cleanup of socket connections when users disconnect or switch conversations.",
+        "screenshots": [
+            "/Pictures/WeCommunicate/Chat.png",
+            "/Pictures/WeCommunicate/Locations.png",
+            "/Pictures/WeCommunicate/Login.png"
+        ]
+    },
+    {
+        "title": "PC Marketplace",
+        "tech": "Angular, .NET, JWT, SQLite",
+        "description": "Full-stack marketplace application for PC components with role-aware authentication and a structured backend API.",
+        "github": "https://github.com/ShohamKatzav/PCMarketPlace",
+        "demo": "https://pc-market-place.vercel.app/",
+        "credentials": [
+            {
+                "authorization": "admin",
+                "username": "shoham",
+                "password": "Pa$$w0rd"
+            },
+            {
+                "authorization": "user",
+                "username": "caitlin",
+                "password": "Pa$$w0rd"
+            }
+        ],
+        "features": [
+            "Angular frontend consuming a .NET REST API",
+            "JWT-based authentication",
+            "Admin vs User authorization flow",
+            "Product listing and management",
+            "SQLite persistence layer"
+        ],
+        "challenges": "Designing a clean separation between frontend and backend while implementing role-based authorization. Focused on clear API boundaries and predictable authentication behavior.",
+        "screenshots": [
+            "/Pictures/PCMarketPlace/Home.png",
+            "/Pictures/PCMarketPlace/Members.png",
+            "/Pictures/PCMarketPlace/Login.png"
+        ]
+    },
+    {
+        "title": "Todo App",
+        "tech": "React, Express.js, MongoDB, Auth0",
+        "description": "Task management application with secure OAuth authentication and REST-based CRUD operations.",
+        "github": "https://github.com/ShohamKatzav/react-express-crud",
+        "demo": "https://todo-app-topaz-psi.vercel.app/",
+        "credentials": [
+            {
+                "username": "shoham@gmail.com",
+                "password": "Pa$$w0rd"
+            }
+        ],
+        "features": [
+            "Auth0 OAuth authentication",
+            "CRUD operations for tasks",
+            "REST API built with Express.js",
+            "MongoDB persistence",
+            "Client-server separation"
+        ],
+        "challenges": "Integrating Auth0 authentication into a custom backend while keeping the client experience simple and predictable.",
+        "screenshots": [
+            "/Pictures/TodoApp/Home.png",
+            "/Pictures/TodoApp/Login.png",
+            "/Pictures/TodoApp/About.png"
+        ]
+    }
+]

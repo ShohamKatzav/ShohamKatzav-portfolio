@@ -1,0 +1,57 @@
+[
+    {
+        "title": "Real-time Chat E2E Test Suite",
+        "tech": "Playwright, TypeScript, GitHub Actions",
+        "description": "End-to-end test suite for a real-time chat application, focusing on authentication, messaging, and offline scenarios.",
+        "github": "https://github.com/ShohamKatzav/WeCommunicate-NextJs/tree/main/tests",
+        "features": [
+            "Page Object Model architecture",
+            "Data-driven tests with multiple users",
+            "WebSocket messaging validation",
+            "Offline mode and reconnection tests",
+            "CI execution via GitHub Actions"
+        ],
+        "challenges": "Testing asynchronous WebSocket behavior and handling race conditions in real-time messaging. Implemented custom wait strategies instead of brittle timeouts.",
+        "screenshots": [
+            "/Pictures/WeCommunicate-test/run.png",
+            "/Pictures/WeCommunicate-test/Cleanup.png",
+            "/Pictures/WeCommunicate-test/workflow.png"
+        ]
+    },
+    {
+        "title": "Hybrid Selenium Automation Framework",
+        "tech": "Selenium, Java, TestNG, Maven, Jenkins",
+        "description": "Scalable Selenium automation framework using Page Object Model with CI integration for regression testing.",
+        "github": "https://github.com/ShohamKatzav/AutomationCICD",
+        "features": [
+            "Page Object Model structure",
+            "Parallel execution with TestNG",
+            "CI pipeline with Jenkins",
+            "Extent Reports integration",
+            "Failure screenshots"
+        ],
+        "challenges": "Ensuring thread-safe execution during parallel runs and maintaining readable test reports as the test suite scaled.",
+        "screenshots": [
+            "/Pictures/Selenium/Allure.png",
+            "/Pictures/Selenium/Local.png"
+        ]
+    },
+    {
+        "title": "Playwright Automation Framework",
+        "tech": "Playwright, JavaScript, GitHub Actions",
+        "description": "Automation framework combining UI and API testing with reusable fixtures and utilities.",
+        "github": "https://github.com/ShohamKatzav/GrowAutomationCICD",
+        "features": [
+            "Page Object Model design",
+            "API and UI test integration",
+            "Custom Playwright fixtures",
+            "Video and trace capture on failures",
+            "CI-ready execution"
+        ],
+        "challenges": "Balancing test reliability with execution speed while covering both UI flows and backend API behavior.",
+        "screenshots": [
+            "/Pictures/PaymentAPI/PaymentAPI.png",
+            "/Pictures/PaymentAPI/workflow.png"
+        ]
+    }
+]
