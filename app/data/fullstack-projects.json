@@ -1,28 +1,31 @@
 [
     {
         "title": "We Communicate",
-        "tech": "Next.js, Socket.io, MongoDB",
-        "description": "Real-time chat application demonstrating WebSocket communication, authentication flow, and persistent message storage using MongoDB.",
+        "tech": "Next.js, Socket.io, MongoDB, OpenAI API, Redis, PWA",
+        "description": "A production-grade real-time communication platform featuring PWA integration, AI-powered automated moderation, and native push notifications.",
         "github": "https://github.com/ShohamKatzav/WeCommunicate-NextJs",
         "demo": "https://wecommunicate-nextjs.onrender.com/",
         "credentials": [
             {
+                "authorization": "moderator",
                 "username": "shoham@gmail.com",
                 "password": "12345678"
             },
             {
+                "authorization": "user",
                 "username": "skgladiator3@gmail.com",
                 "password": "12345678"
             }
         ],
         "features": [
-            "Real-time messaging using Socket.io",
-            "User authentication and session handling",
-            "Persistent message history stored in MongoDB",
-            "Conversation-based chat structure",
-            "Responsive UI for desktop and mobile"
+            "PWA integration with Service Workers for offline support and 'Add to Home Screen'",
+            "Web Push Notifications for real-time alerts even when the browser is closed",
+            "Automated AI Moderation using OpenAI to detect and punish violations",
+            "Full Moderator Panel for manual banning, unbanning, and role promotion",
+            "Real-time messaging using Socket.io and Redis for socket management",
+            "Multi-level punishment system (warnings, temporary and permanent bans)"
         ],
-        "challenges": "Managing WebSocket connections alongside Next.js routing and API routes. Ensured stable message delivery and proper cleanup of socket connections when users disconnect or switch conversations.",
+        "challenges": "Architecting a seamless notification system that bridges WebSockets for active users and Web Push via Service Workers for background users. Solved complex synchronization issues between stateful socket events and stateless PWA background tasks.",
         "screenshots": [
             "/Pictures/WeCommunicate/Chat.png",
             "/Pictures/WeCommunicate/Locations.png",
