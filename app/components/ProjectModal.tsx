@@ -1,5 +1,5 @@
 import Project from "@/app/types/Project";
-import { ChevronRight, Github, X } from "lucide-react";
+import { ChevronRight, Github, Loader2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import FullscreenMediaViewer from "./fullscreenMediaViewer";
 import Image from 'next/image';
@@ -15,6 +15,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
     const [isFullscreen, setIsFullscreen] = useState(false);
     const isMobile = useIsMobile();
     const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         setCurrentScreenshot(0);
@@ -22,6 +23,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
 
     useEffect(() => {
         setIsError(false);
+        setIsLoading(true);
     }, [currentScreenshot, project]);
 
     return (
@@ -40,6 +42,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                         <div className="mb-6">
                             <div className="relative rounded-lg overflow-hidden bg-slate-800 mb-4 aspect-video">
 
+                                {isLoading && !isError && (
+                                    <div className="absolute inset-0 flex items-center justify-center z-10 bg-slate-800">
+                                        <Loader2 className="w-10 h-10 text-white animate-spin opacity-50" />
+                                    </div>
+                                )}
+
                                 <Image
                                     src={isError ? '/Pictures/noImage.webp' : project.screenshots[currentScreenshot]}
                                     onDoubleClick={() => {
@@ -49,11 +57,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                         if (!isMobile) setIsFullscreen(true);
                                     }}
                                     fill
-                                    className="object-cover"
+                                    className={`object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                                     alt={`${project.title} screenshot ${currentScreenshot + 1}`}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     priority
-                                    onError={() => setIsError(true)}
+                                    onLoad={() => setIsLoading(false)}
+                                    onError={() => {
+                                        setIsError(true);
+                                        setIsLoading(false);
+                                    }}
                                 />
                             </div>
                             <div className="flex gap-2 justify-center">

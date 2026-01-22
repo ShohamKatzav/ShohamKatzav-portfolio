@@ -1,41 +1,43 @@
 import Project from "../types/Project";
 import Image from 'next/image'
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface ProjectCardProperties {
     project: Project;
     activeTab: "fullstack" | "qa";
-
-
 }
 
 export default function ProjectCard({ project, activeTab }: ProjectCardProperties) {
-
-    const [imgSrc, setImgSrc] = useState(
-        project.screenshots && project.screenshots.length > 0
-            ? project.screenshots[0]
-            : '/Pictures/noImage.webp'
-    );
+    const imgSrc = project.screenshots?.[0] || '/Pictures/noImage.webp';
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setImgSrc(
-            project.screenshots && project.screenshots.length > 0
-                ? project.screenshots[0]
-                : '/Pictures/noImage.webp'
-        );
-    }, [project]);
+        setIsLoading(true);
+    }, [activeTab, project]);
 
     return (
         <>
             <div className="relative mb-4 rounded-lg overflow-hidden bg-slate-900/60 aspect-video flex items-center justify-center">
+                {isLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10 bg-slate-900/60">
+                        <Loader2 className="w-10 h-10 text-white animate-spin opacity-50" />
+                    </div>
+                )}
                 <Image
+                    key={`${project.title}-${activeTab}`}
                     src={imgSrc}
                     alt={`${project.title} preview`}
                     width={500}
                     height={500}
-                    className="object-cover w-full h-full"
-                    onError={() => setImgSrc('/Pictures/noImage.webp')}
+                    priority
+                    className={`object-cover w-full h-full transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'
+                        }`}
+                    onLoad={() => setIsLoading(false)}
+                    onError={(e) => {
+                        e.currentTarget.src = '/Pictures/noImage.webp';
+                        setIsLoading(false);
+                    }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
@@ -45,7 +47,6 @@ export default function ProjectCard({ project, activeTab }: ProjectCardPropertie
             <p className="text-gray-400 text-sm leading-relaxed mb-4">{project.description}</p>
 
             <div className="flex-grow"></div>
-
 
             {activeTab === 'fullstack' ? (
                 <div className="flex gap-3">

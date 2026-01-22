@@ -10,6 +10,12 @@
     "Azure Pipelines",
     "Postman",
     "REST APIs",
+    "RestAssured",
+    "GraphQL",
     "Maven",
-    "Git"
+    "Git",
+    "POJO / Serialization",
+    "OAuth Authentication",
+    "JSON Data-Driven Testing",
+    "UI/UX Touch Gestures"
 ]

@@ -2,7 +2,7 @@
 "use client"
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { Loader2, X } from 'lucide-react';
 import GalleryNavButton from './GalleryNavButton';
 
 interface FullscreenMediaViewerProps {
@@ -18,6 +18,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
     const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Minimum distance required to be considered a "swipe"
     const minSwipeDistance = 50;
@@ -66,6 +67,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
 
     useEffect(() => {
         setIsError(false);
+        setIsLoading(true);
     }, [currentScreenshot, src]);
 
     return (
@@ -77,6 +79,13 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
         >
+
+            {isLoading && !isError && (
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                    <Loader2 className="w-10 h-10 text-white animate-spin opacity-50" />
+                </div>
+            )}
+
             <div className="hidden md:block">
                 <GalleryNavButton direction="left" setCurrentScreenshot={setCurrentScreenshot} disabled={currentScreenshot === 0} />
             </div>
@@ -99,7 +108,11 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
                         fill
                         style={{ objectFit: 'contain' }}
                         priority
-                        onError={() => setIsError(true)}
+                        onLoad={() => setIsLoading(false)}
+                        onError={() => {
+                            setIsError(true);
+                            setIsLoading(false);
+                        }}
                     />
                 </div>
             </div>

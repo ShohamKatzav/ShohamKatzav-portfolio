@@ -42,7 +42,7 @@
         "title": "REST Assured API Testing Framework",
         "tech": "REST Assured, Cucumber, Java, Maven, GitHub Actions",
         "description": "BDD-driven API testing framework for Google Maps-style Place API with complete CRUD operation coverage and automated reporting.",
-        "github": "https://github.com/ShohamKatzav/APIFramework",
+        "github": "https://github.com/ShohamKatzav/RestAssuredPlaceAPI",
         "features": [
             "Cucumber BDD with Gherkin scenarios",
             "POJO-based request/response serialization",
