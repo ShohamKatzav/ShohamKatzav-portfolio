@@ -1,6 +1,7 @@
 import Project from "../types/Project";
 import Image from 'next/image'
 import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface ProjectCardProperties {
     project: Project;
@@ -10,18 +11,31 @@ interface ProjectCardProperties {
 }
 
 export default function ProjectCard({ project, activeTab }: ProjectCardProperties) {
+
+    const [imgSrc, setImgSrc] = useState(
+        project.screenshots && project.screenshots.length > 0
+            ? project.screenshots[0]
+            : '/Pictures/noImage.webp'
+    );
+
+    useEffect(() => {
+        setImgSrc(
+            project.screenshots && project.screenshots.length > 0
+                ? project.screenshots[0]
+                : '/Pictures/noImage.webp'
+        );
+    }, [project]);
+
     return (
         <>
             <div className="relative mb-4 rounded-lg overflow-hidden bg-slate-900/60 aspect-video flex items-center justify-center">
                 <Image
-                    src={project.screenshots && project.screenshots.length > 0
-                        ? project.screenshots[0]
-                        : '/Pictures/noImage.webp'
-                    }
+                    src={imgSrc}
                     alt={`${project.title} preview`}
                     width={500}
                     height={500}
-                    className="object-cover w-full h-full" // Added for better image fit
+                    className="object-cover w-full h-full"
+                    onError={() => setImgSrc('/Pictures/noImage.webp')}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>

@@ -14,10 +14,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
     const [currentScreenshot, setCurrentScreenshot] = useState(0);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const isMobile = useIsMobile();
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         setCurrentScreenshot(0);
     }, [project]);
+
+    useEffect(() => {
+        setIsError(false);
+    }, [currentScreenshot, project]);
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
@@ -36,7 +41,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                             <div className="relative rounded-lg overflow-hidden bg-slate-800 mb-4 aspect-video">
 
                                 <Image
-                                    src={project.screenshots[currentScreenshot]}
+                                    src={isError ? '/Pictures/noImage.webp' : project.screenshots[currentScreenshot]}
                                     onDoubleClick={() => {
                                         if (isMobile) setIsFullscreen(true);
                                     }}
@@ -48,6 +53,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                     alt={`${project.title} screenshot ${currentScreenshot + 1}`}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     priority
+                                    onError={() => setIsError(true)}
                                 />
                             </div>
                             <div className="flex gap-2 justify-center">
@@ -141,6 +147,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
             {isFullscreen && project.screenshots && (
                 <FullscreenMediaViewer
                     src={project.screenshots[currentScreenshot]}
+                    currentScreenshot={currentScreenshot}
+                    setCurrentScreenshot={setCurrentScreenshot}
+                    screenshotsLength={project.screenshots.length}
                     onClose={() => setIsFullscreen(false)}
                 />
             )}

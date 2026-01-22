@@ -22,7 +22,7 @@
         "title": "Hybrid Selenium Automation Framework",
         "tech": "Selenium, Java, TestNG, Maven, Jenkins",
         "description": "Scalable Selenium automation framework using Page Object Model with CI integration for regression testing.",
-        "github": "https://github.com/ShohamKatzav/AutomationCICD",
+        "github": "https://github.com/ShohamKatzav/SeleniumJavaFramework",
         "features": [
             "Page Object Model structure",
             "Parallel execution with TestNG",
@@ -32,26 +32,31 @@
         ],
         "challenges": "Ensuring thread-safe execution during parallel runs and maintaining readable test reports as the test suite scaled.",
         "screenshots": [
+            "/Pictures/Selenium/Parameters.png",
+            "/Pictures/Selenium/JenkinsOutput.png",
             "/Pictures/Selenium/Allure.png",
             "/Pictures/Selenium/Local.png"
         ]
     },
     {
-        "title": "Playwright Automation Framework",
-        "tech": "Playwright, JavaScript, GitHub Actions",
-        "description": "Automation framework combining UI and API testing with reusable fixtures and utilities.",
-        "github": "https://github.com/ShohamKatzav/GrowAutomationCICD",
+        "title": "REST Assured API Testing Framework",
+        "tech": "REST Assured, Cucumber, Java, Maven, GitHub Actions",
+        "description": "BDD-driven API testing framework for Google Maps-style Place API with complete CRUD operation coverage and automated reporting.",
+        "github": "https://github.com/ShohamKatzav/APIFramework",
         "features": [
-            "Page Object Model design",
-            "API and UI test integration",
-            "Custom Playwright fixtures",
-            "Video and trace capture on failures",
-            "CI-ready execution"
+            "Cucumber BDD with Gherkin scenarios",
+            "POJO-based request/response serialization",
+            "Reusable specification builders",
+            "Data-driven testing with Scenario Outlines",
+            "Cucumber HTML reporting with Maven plugin",
+            "CI/CD integration with GitHub Actions"
         ],
-        "challenges": "Balancing test reliability with execution speed while covering both UI flows and backend API behavior.",
+        "challenges": "Managing test data across multiple scenarios while maintaining test independence. Implemented hooks for setup/teardown and static place_id management to ensure clean state between tests.",
         "screenshots": [
-            "/Pictures/PaymentAPI/PaymentAPI.png",
-            "/Pictures/PaymentAPI/workflow.png"
+            "/Pictures/RestAssured/Report.png",
+            "/Pictures/RestAssured/Output.png",
+            "/Pictures/RestAssured/Workflow.png",
+            "/Pictures/RestAssured/Parameters.png"
         ]
     }
 ]
