@@ -6,6 +6,7 @@ export default interface Project {
     description: string;
     github: string;
     demo?: string;
+    reportUrl?: string;
     credentials?: Credentials[];
     features?: string[];
     challenges?: string;

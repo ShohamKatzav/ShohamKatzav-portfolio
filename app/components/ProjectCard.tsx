@@ -71,13 +71,31 @@ export default function ProjectCard({ project, activeTab }: ProjectCardPropertie
                     </button>
                 </div>
             ) : (
-                <button className="w-full flex items-center justify-center gap-2 px-4 py-2 
-                       bg-gradient-to-r from-emerald-500 to-cyan-500
-                       text-white rounded-lg text-sm font-medium 
-                       hover:shadow-lg transition-all duration-300">
-                    View Details
-                </button>
-            )}
+                <div className="flex gap-3">
+                    {project.reportUrl &&
+                        <a
+                            href={project.reportUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2
+                            bg-gradient-to-r from-emerald-500 to-cyan-500
+                            text-white rounded-lg text-sm font-medium whitespace-nowrap
+                            hover:shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-0.5
+                            transition-all duration-300"
+                        >
+                            View Report <ChevronRight size={16} />
+                        </a>
+                    }
+                    <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 
+                       bg-slate-800/50 border border-slate-700 
+                       text-slate-300 rounded-lg text-sm font-medium whitespace-nowrap
+                       hover:bg-slate-700 hover:text-white 
+                       transition-all duration-300">
+                        View Details
+                    </button>
+                </div >
+            )
+            }
         </>
     );
 }

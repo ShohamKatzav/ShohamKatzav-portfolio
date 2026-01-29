@@ -1,26 +1,29 @@
 [
     {
         "title": "Real-time Chat E2E Test Suite",
-        "tech": "Playwright, TypeScript, GitHub Actions",
-        "description": "End-to-end test suite for a real-time chat application, focusing on authentication, messaging, and offline scenarios.",
+        "tech": "Playwright, TypeScript, GitHub Actions, Allure Reports",
+        "description": "End-to-end test suite for a real-time chat application with comprehensive reporting, focusing on authentication, messaging, and offline scenarios.",
         "github": "https://github.com/ShohamKatzav/WeCommunicate-NextJs/tree/main/tests",
+        "reportUrl": "https://shohamkatzav.github.io/WeCommunicate-NextJs/",
         "features": [
             "Page Object Model architecture",
             "Data-driven tests with multiple users",
             "WebSocket messaging validation",
             "Offline mode and reconnection tests",
-            "CI execution via GitHub Actions"
+            "CI execution via GitHub Actions",
+            "Automated Allure report generation and deployment to GitHub Pages"
         ],
         "challenges": "Testing asynchronous WebSocket behavior and handling race conditions in real-time messaging. Implemented custom wait strategies instead of brittle timeouts.",
         "screenshots": [
-            "/Pictures/WeCommunicate-test/run.png",
-            "/Pictures/WeCommunicate-test/Cleanup.png",
-            "/Pictures/WeCommunicate-test/workflow.png"
+            "/Pictures/WeCommunicate-test/Allure.png",
+            "/Pictures/WeCommunicate-test/Workflow.png",
+            "/Pictures/WeCommunicate-test/Workflow-tests.png",
+            "/Pictures/WeCommunicate-test/Cleanup.png"
         ]
     },
     {
         "title": "Hybrid Selenium Automation Framework",
-        "tech": "Selenium, Java, TestNG, Maven, Jenkins",
+        "tech": "Selenium, Java, TestNG, Maven, Jenkins, Extent Reports",
         "description": "Scalable Selenium automation framework using Page Object Model with CI integration for regression testing.",
         "github": "https://github.com/ShohamKatzav/SeleniumJavaFramework",
         "features": [
@@ -32,9 +35,9 @@
         ],
         "challenges": "Ensuring thread-safe execution during parallel runs and maintaining readable test reports as the test suite scaled.",
         "screenshots": [
+            "/Pictures/Selenium/ExtentReports.png",
             "/Pictures/Selenium/Parameters.png",
             "/Pictures/Selenium/JenkinsOutput.png",
-            "/Pictures/Selenium/Allure.png",
             "/Pictures/Selenium/Local.png"
         ]
     },
