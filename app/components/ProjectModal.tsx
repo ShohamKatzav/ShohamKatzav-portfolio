@@ -1,5 +1,5 @@
 import Project from "@/app/types/Project";
-import { ChevronRight, Github, Loader2, X, BarChart3 } from "lucide-react";
+import { ChevronRight, ExternalLink, Github, Loader2, X, BarChart3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import FullscreenMediaViewer from "./fullscreenMediaViewer";
 import Image from 'next/image';
@@ -141,7 +141,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300"
                             >
-                                Launch App <ChevronRight size={16} />
+                                Launch App <ExternalLink size={16} />
                             </a>
                         )}
                         {project.reportUrl && (
@@ -151,7 +151,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300"
                             >
-                                View Report <BarChart3 size={16} />
+                                <BarChart3 size={16} />
+                                View Report
                             </a>
                         )}
                         <a
