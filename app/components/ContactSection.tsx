@@ -1,53 +1,47 @@
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, ArrowUpRight } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+
+const contacts = [
+    { label: 'Email', value: 'shohamkatzav95@gmail.com', href: 'mailto:shohamkatzav95@gmail.com', Icon: Mail },
+    { label: 'Phone', value: '+972-52-329-2847', href: 'tel:+972523292847', Icon: Phone },
+    { label: 'LinkedIn', value: 'linkedin.com/in/shoham-katzav', href: 'https://www.linkedin.com/in/shoham-katzav', Icon: Linkedin },
+    { label: 'GitHub', value: 'github.com/ShohamKatzav', href: 'https://github.com/ShohamKatzav', Icon: Github },
+];
 
 export default function ContactSection() {
 
     return (
-        <div id="contact" className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">Let's Connect</h2>
-            <p className="text-gray-400 mb-8">
-                Currently looking for new opportunities. If you like what you see, I'd love to hear from you.
-            </p>
+        <section id="contact" aria-labelledby="contact-title" className="border-t border-hairline py-16 md:py-20">
+            <SectionHeading
+                index="04"
+                id="contact-title"
+                title="Contact"
+                lead="I'm looking for a full stack or QA automation role. Email is the fastest way to reach me."
+            />
 
-            <div className="bg-slate-800/40 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 mb-8">
-                <div className="space-y-4">
-                    <div className="flex items-center justify-center gap-3 text-gray-300">
-                        <Mail size={20} className="text-emerald-400" />
-                        <a href="mailto:shohamkatzav95@gmail.com" className="hover:text-emerald-400 transition-colors">
-                            shohamkatzav95@gmail.com
-                        </a>
-                    </div>
-                    <div className="flex items-center justify-center gap-3 text-gray-300">
-                        <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        <a href="tel:+972523292847" className="hover:text-emerald-400 transition-colors">
-                            052-329-2847
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex justify-center gap-6">
-                <a
-                    href="https://www.linkedin.com/in/shoham-katzav"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-slate-800/60 backdrop-blur-sm text-white rounded-full font-medium border border-slate-700/50 hover:border-emerald-500/50 hover:scale-105 transition-all duration-300"
-                >
-                    <Linkedin size={20} />
-                    LinkedIn
-                </a>
-                <a
-                    href="https://github.com/ShohamKatzav"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-slate-800/60 backdrop-blur-sm text-white rounded-full font-medium border border-slate-700/50 hover:border-emerald-500/50 hover:scale-105 transition-all duration-300"
-                >
-                    <Github size={20} />
-                    GitHub
-                </a>
-            </div>
-        </div>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+                {contacts.map(({ label, value, href, Icon }) => {
+                    const external = href.startsWith('http');
+                    return (
+                        <li key={label}>
+                            <a
+                                href={href}
+                                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                className="group flex items-center gap-4 rounded-lg border border-hairline bg-surface/80 p-4 transition hover:-translate-y-0.5 hover:border-accent"
+                            >
+                                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-accent/15 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-label">
+                                    <Icon size={20} aria-hidden />
+                                </span>
+                                <span className="min-w-0 flex-1">
+                                    <span className="block text-sm text-muted">{label}</span>
+                                    <span className="block break-all font-medium text-fg">{value}</span>
+                                </span>
+                                <ArrowUpRight size={18} aria-hidden className="shrink-0 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </section>
     )
 }

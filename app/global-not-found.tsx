@@ -1,8 +1,6 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { fontClasses, themeScript } from './fonts';
 import NotFoundClient from './not-found-client';
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
     title: '404 - Page Not Found',
@@ -11,8 +9,11 @@ export const metadata = {
 
 export default function GlobalNotFound() {
     return (
-        <html lang="en" className={inter.className}>
-            <body>
+        <html lang="en" className={fontClasses} suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
+            <body className="font-sans antialiased">
                 <NotFoundClient />
             </body>
         </html>

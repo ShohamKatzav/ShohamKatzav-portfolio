@@ -1,19 +1,19 @@
 [
     {
         "title": "Real-time Chat E2E Test Suite",
-        "tech": "Playwright, TypeScript, GitHub Actions, Allure Reports",
-        "description": "End-to-end test suite for a real-time chat application with comprehensive reporting, focusing on authentication, messaging, and offline scenarios.",
+        "tech": "Playwright, TypeScript, axe-core, GitHub Actions, Allure",
+        "description": "The Playwright suite that lives in the We Communicate repo and runs against the live app after every push to main.",
         "github": "https://github.com/ShohamKatzav/WeCommunicate-NextJs/tree/main/tests",
         "reportUrl": "https://shohamkatzav.github.io/WeCommunicate-NextJs/",
         "features": [
-            "Page Object Model architecture",
-            "Data-driven tests with multiple users",
-            "WebSocket messaging validation",
-            "Offline mode and reconnection tests",
-            "CI execution via GitHub Actions",
-            "Automated Allure report generation and deployment to GitHub Pages"
+            "Auth: login validation (missing, malformed, and wrong credentials, and offline), forgot-password and sign-up OTP flows, and route guards for logged-out users and fake tokens",
+            "Messaging: send, receive, and delete, file uploads, safe link rendering, replies, search, and drafts that survive a refresh",
+            "Two logged-in browsers for live checks: read receipts and the unread divider, typing, presence, unread notification counts, and blocking",
+            "Voice messages recorded with a fake microphone, call buttons on 1:1 vs group chats, and disappearing-message settings",
+            "PWA share target (POST, Samsung GET, logged-out redirects), offline queueing, and dark mode contrast checked with axe-core",
+            "Page Object Model behind a POManager fixture. GitHub Actions waits for the Render deploy, runs the suite, and publishes the Allure report to GitHub Pages"
         ],
-        "challenges": "Testing asynchronous WebSocket behavior and handling race conditions in real-time messaging. Implemented custom wait strategies instead of brittle timeouts.",
+        "challenges": "Offline. The tests cut the network with context.setOffline, then send, delete, clear history, or delete a conversation. Those actions go into the app's queue. To reconnect, a helper posts SYNC_QUEUE to the service worker and waits for its MESSAGE_SYNCED reply, then waits for the pending indicator to clear. The clear-history test checks that a message queued before the clear stays gone after the queue replays and the page reloads, and that a message sent after it survives.",
         "screenshots": [
             "/Pictures/WeCommunicate-test/Allure.png",
             "/Pictures/WeCommunicate-test/Workflow.png",

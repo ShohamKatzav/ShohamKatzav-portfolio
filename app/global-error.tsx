@@ -1,9 +1,7 @@
 "use client";
 import ErrorClient from './error-client';
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { fontClasses, themeScript } from './fonts';
 
 export const metadata = {
     title: '500 - Page Not Found',
@@ -12,8 +10,11 @@ export const metadata = {
 
 export default function GlobalError() {
     return (
-        <html lang="en" className={inter.className}>
-            <body>
+        <html lang="en" className={fontClasses} suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
+            <body className="font-sans antialiased">
                 <ErrorClient />
             </body>
         </html>

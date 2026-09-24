@@ -11,4 +11,5 @@ export default interface Project {
     features?: string[];
     challenges?: string;
     screenshots?: string[];
+    cardCrop?: { x: number; y: number; width: number; height: number };
 }

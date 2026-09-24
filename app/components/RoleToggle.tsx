@@ -1,37 +1,44 @@
 import { SetStateAction } from "react";
-import { Code, TestTube } from "lucide-react";
+import { Code2, FlaskConical } from "lucide-react";
 
 interface RoleToggleProperties {
     activeTab: "fullstack" | "qa";
     setActiveTab: (value: SetStateAction<"fullstack" | "qa">) => void;
 }
 
+const roles = [
+    { id: 'fullstack', label: 'Full stack', Icon: Code2 },
+    { id: 'qa', label: 'QA automation', Icon: FlaskConical },
+] as const;
+
 export default function RoleToggle({ activeTab, setActiveTab }: RoleToggleProperties) {
     return (
-        <div className="flex justify-center mb-12">
-            <div id="projects" className="bg-slate-800/50 backdrop-blur-sm rounded-full p-2 inline-flex gap-2">
-                <button
-                    onClick={() => setActiveTab('fullstack')}
-                    className={`px-4 py-2 md:px-8 md:py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap
-                         ${activeTab === 'fullstack'
-                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg'
-                            : 'text-gray-400 hover:text-white'
-                        }`}
-                >
-                    <Code size={20} />
-                    Full Stack
-                </button>
-                <button
-                    onClick={() => setActiveTab('qa')}
-                    className={`px-8 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap
-                         ${activeTab === 'qa'
-                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg'
-                            : 'text-gray-400 hover:text-white'
-                        }`}
-                >
-                    <TestTube size={20} />
-                    QA Automation
-                </button>
+        <div className="rounded-lg border border-outline bg-surface/80 p-5 shadow-[0_24px_48px_-28px_var(--accent)] backdrop-blur sm:p-6">
+            <p id="role-toggle-label" className="font-serif text-xl font-semibold text-fg">Show work for</p>
+            <p id="role-toggle-desc" className="mt-1 text-muted">
+                Switches the projects, skills, and CV below.
+            </p>
+            <div
+                role="group"
+                aria-labelledby="role-toggle-label"
+                aria-describedby="role-toggle-desc"
+                className="mt-5 grid grid-cols-2 gap-2"
+            >
+                {roles.map(({ id, label, Icon }) => (
+                    <button
+                        key={id}
+                        type="button"
+                        onClick={() => setActiveTab(id)}
+                        aria-pressed={activeTab === id}
+                        className={`inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2.5 font-medium whitespace-nowrap transition-colors sm:px-5 ${activeTab === id
+                            ? 'border-accent bg-accent text-accent-label'
+                            : 'border-outline text-fg hover:border-fg'
+                            }`}
+                    >
+                        <Icon size={18} aria-hidden />
+                        {label}
+                    </button>
+                ))}
             </div>
         </div>
     );
