@@ -1,38 +1,33 @@
 import fullStackSkillsData from '@/app/data/fullstack-skills.json';
 import qaSkillsData from '@/app/data/qa-skills.json'
+import SectionHeading from './SectionHeading';
 
-export default function SkillsSection() {
+interface SectionProperties {
+    activeTab: "fullstack" | "qa";
+}
+
+const groups = {
+    fullstack: { title: 'Full Stack', skills: fullStackSkillsData },
+    qa: { title: 'QA Automation', skills: qaSkillsData },
+};
+
+export default function SkillsSection({ activeTab }: SectionProperties) {
+    const { title, skills } = groups[activeTab];
+
     return (
-        <div id="skills" className="max-w-4xl mx-auto mb-20">
-            <h2 className="text-3xl font-bold text-white text-center mb-8">Tech Stack</h2>
-            <div className="grid gap-8 mb-8">
-                <div>
-                    <h3 className="text-xl font-semibold text-emerald-400 mb-4">Full Stack Development</h3>
-                    <div className="flex flex-wrap gap-3">
-                        {fullStackSkillsData.map((skill: string, idx: number) => (
-                            <span
-                                key={idx}
-                                className="px-4 py-2 bg-slate-800/60 md:backdrop-blur-sm text-gray-300 rounded-full text-sm border border-slate-700/50"
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-                <div>
-                    <h3 className="text-xl font-semibold text-emerald-400 mb-4">QA Automation</h3>
-                    <div className="flex flex-wrap gap-3">
-                        {qaSkillsData.map((skill: string, idx: number) => (
-                            <span
-                                key={idx}
-                                className="px-4 py-2 bg-slate-800/60 md:backdrop-blur-sm text-gray-300 rounded-full text-sm border border-slate-700/50"
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <section id="skills" aria-labelledby="skills-title" className="border-t border-hairline py-16 md:py-20">
+            <SectionHeading index="02" id="skills-title" title="Skills" />
+            <h3 id="skills-group" className="mt-10 font-serif text-2xl font-semibold text-accent italic">{title}</h3>
+            <ul aria-labelledby="skills-group" className="mt-5 flex flex-wrap gap-3">
+                {skills.map((skill: string) => (
+                    <li
+                        key={skill}
+                        className="rounded-full border border-hairline bg-surface/80 px-4 py-2 text-base font-medium text-fg transition hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+                    >
+                        {skill}
+                    </li>
+                ))}
+            </ul>
+        </section>
     )
 }

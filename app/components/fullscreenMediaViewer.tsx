@@ -48,6 +48,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
 
     useEffect(() => {
         // Prevent body scroll when fullscreen is open
+        const previousOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
 
         const handleEscape = (e: KeyboardEvent) => {
@@ -59,7 +60,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
         document.addEventListener('keydown', handleEscape);
 
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = previousOverflow;
             document.removeEventListener('keydown', handleEscape);
         };
     }, [onClose]);
@@ -82,7 +83,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
 
             {isLoading && !isError && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                    <Loader2 className="w-10 h-10 text-white animate-spin opacity-50" />
+                    <Loader2 className="w-10 h-10 text-white motion-safe:animate-spin" aria-hidden />
                 </div>
             )}
 
@@ -91,10 +92,10 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
             </div>
             <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-10000 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                className="absolute top-4 right-4 z-10000 p-2 rounded-md border border-white/70 bg-black text-white transition-colors hover:border-white"
                 aria-label="Close fullscreen"
             >
-                <X size={28} color="red" />
+                <X size={28} aria-hidden />
             </button>
 
             <div
@@ -104,7 +105,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
                 <div className="relative w-full h-full">
                     <Image
                         src={isError ? '/Pictures/noImage.webp' : src}
-                        alt="Fullscreen image"
+                        alt={`Screenshot ${currentScreenshot + 1} of ${screenshotsLength}`}
                         fill
                         style={{ objectFit: 'contain' }}
                         priority
@@ -120,7 +121,7 @@ export default function FullscreenMediaViewer({ src, currentScreenshot, setCurre
             <div className="hidden md:block">
                 <GalleryNavButton direction="right" setCurrentScreenshot={setCurrentScreenshot} disabled={currentScreenshot === screenshotsLength - 1} />
             </div>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest uppercase md:hidden">
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-xs tracking-widest uppercase md:hidden">
                 Swipe to navigate
             </div>
         </div>

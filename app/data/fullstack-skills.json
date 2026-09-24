@@ -8,10 +8,12 @@
     ".NET",
     "Node.js",
     "Express.js",
+    "Socket.IO",
     "ASP.NET",
     "MongoDB",
     "SQL Server",
     "SQLite",
+    "Redis",
     "Tailwind CSS",
     "Bootstrap"
 ]

@@ -1,8 +1,8 @@
 [
     {
         "title": "We Communicate",
-        "tech": "Next.js, Socket.io, MongoDB, OpenAI API, Redis, PWA",
-        "description": "A production-grade real-time communication platform featuring PWA integration, AI-powered automated moderation, and native push notifications.",
+        "tech": "Next.js, React, TypeScript, Socket.IO, WebRTC, MongoDB, Upstash Redis, Vercel Blob, Tailwind",
+        "description": "A chat app for 1:1 and group conversations, with voice and video calls, voice messages, and an offline outbox. You log in with an email or phone number and a password.",
         "github": "https://github.com/ShohamKatzav/WeCommunicate-NextJs",
         "demo": "https://wecommunicate-nextjs.onrender.com/",
         "credentials": [
@@ -18,17 +18,20 @@
             }
         ],
         "features": [
-            "PWA integration with Service Workers for offline support and 'Add to Home Screen'",
-            "Web Push Notifications for real-time alerts even when the browser is closed",
-            "Automated AI Moderation using OpenAI to detect and punish violations",
-            "Full Moderator Panel for manual banning, unbanning, and role promotion",
-            "Real-time messaging using Socket.io and Redis for socket management",
-            "Multi-level punishment system (warnings, temporary and permanent bans)"
+            "Socket.IO chat, 1:1 and group: typing indicators, read receipts, per-conversation drafts, replies, reactions, full-text search, an unread divider, and disappearing messages",
+            "Voice messages, and 1:1 voice and video calls over WebRTC",
+            "File uploads to Vercel Blob (images are compressed in the browser first) and current-location sharing on Google Maps",
+            "Profiles with an avatar, about text, accent color, phone number, and email. Last seen shows in the chat",
+            "Login is an email or phone number plus a password. A one-time code by email or SMS is only used to create an account, reset a password, or change the phone number or email. Email is optional on the account",
+            "Safety: block another user, automatic content moderation, and a moderator page for bans and role changes. Log in with the moderator demo account to open it",
+            "Installable PWA with push notifications, an offline outbox, and local history that still loads when a server call is slow or cut off",
+            "Upstash Redis tracks presence and rate-limits requests"
         ],
-        "challenges": "Architecting a seamless notification system that bridges WebSockets for active users and Web Push via Service Workers for background users. Solved complex synchronization issues between stateful socket events and stateless PWA background tasks.",
+        "challenges": "Keeping chat state honest when the other side changes under you. Read receipts, the unread divider, typing, and online status all depend on what another user just did. The typing indicator has to clear when the person typing closes the tab mid-sentence. The unread divider shows once and must not come back after the conversation has been opened. Each of those cases is covered by a Playwright spec in the same repo.",
         "screenshots": [
             "/Pictures/WeCommunicate/Chat.png",
             "/Pictures/WeCommunicate/Locations.png",
+            "/Pictures/WeCommunicate/ProfileEdit.png",
             "/Pictures/WeCommunicate/Login.png"
         ]
     },
@@ -88,6 +91,12 @@
             "/Pictures/TodoApp/Home.png",
             "/Pictures/TodoApp/Login.png",
             "/Pictures/TodoApp/About.png"
-        ]
+        ],
+        "cardCrop": {
+            "x": 0.2987,
+            "y": 0.1977,
+            "width": 0.4029,
+            "height": 0.4438
+        }
     }
 ]

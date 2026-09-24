@@ -13,7 +13,8 @@ export default function GalleryNavButton({ direction, setCurrentScreenshot, disa
     return (
         <button
             disabled={disabled}
-            className="group p-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed mx-4"
+            aria-label={direction === 'left' ? 'Previous screenshot' : 'Next screenshot'}
+            className="p-3 mx-4 rounded-md border border-white/70 bg-black text-white transition-colors hover:border-white disabled:opacity-30 disabled:cursor-not-allowed"
             onClick={(e) => {
                 e.stopPropagation();
                 direction === 'left'
@@ -21,7 +22,7 @@ export default function GalleryNavButton({ direction, setCurrentScreenshot, disa
                     : setCurrentScreenshot(prev => prev + 1);
             }}
         >
-            <Icon size={40} className="group-hover:scale-110 transition-transform" color="yellow" />
+            <Icon size={36} aria-hidden />
         </button>
     );
 }
