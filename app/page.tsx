@@ -24,7 +24,7 @@ export default function Portfolio() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen, selectedProject]);
 
-  const projects: Project[] = activeTab === 'fullstack' ? fullStackProjectsData : qaProjectsData;
+  const projects = (activeTab === 'fullstack' ? fullStackProjectsData : qaProjectsData) as Project[];
 
   return (
     <div className="min-h-screen text-fg">
