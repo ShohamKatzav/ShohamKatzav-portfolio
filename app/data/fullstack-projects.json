@@ -1,5 +1,26 @@
 [
     {
+        "title": "TrackEats",
+        "tech": "React Native, Expo, TypeScript, Node.js, Express, PostgreSQL, Redis, Docker, Anthropic API",
+        "description": "A dinner reminder for the commute home. You save a route and an order from a delivery provider. When the time left on that route is about how long delivery would take, the phone asks if you want to order.",
+        "screenshotFit": "contain",
+        "features": [
+            "Several commutes, each with its own days, time window, and route home (walk, bus, train, or car). Home shows that route on a map, with the time left to get home, the delivery estimate, and how long until the reminder. Watching starts 15 minutes before the window. The reminder fires when the time left is within the delivery estimate: kitchen prep plus the drive from the restaurant. A commute can be paused without deleting it",
+            "A usual order is 1–8 dishes from one restaurant, picked from the provider's menu. Each dish is its own line. A day can pin another saved order, or be Surprise me from that commute's pool. Dishes you might like offers up to 3 dishes you have not saved, from restaurants you already order from. Restaurants to try suggests dishes like yours from restaurants near that commute's home that you have not saved. The server sends those lists to the Anthropic API, which only ranks ids already read from the menu",
+            "Background location while a commute window is open, including when the app is closed. A geofence at the start of the route wakes the phone, then a fix about once a minute is checked. The reminder is a local notification, with snooze for 10, 15, or 30 minutes, or Not today. Each dish is checked against the menu first",
+            "Order now adds every dish, with the choices saved on it, to the provider's cart and opens their order sheet. Checkout and payment stay there. TrackEats never places the order",
+            "PostgreSQL and Redis run in Docker locally. Production is an Oracle Cloud server: Docker Compose runs the API, PostgreSQL, Redis, and Caddy, which terminates HTTPS and proxies to the API. An update is a pull and a rebuild of the API container"
+        ],
+        "challenges": "An order of several dishes. One dish can open as a link. Several have to be added to one cart, each with its choices already selected, and the provider has no public link that fills a cart. Those choices are groups on the menu. A required group, such as a sauce or a size, has to be chosen or that dish cannot be ordered. Before groups were stored on the order, the user had to mark which groups were required. The menu already says it: a group whose minimum is at least one is required. Each dish is now its own line, and its groups are read from the menu. A required group starts on the provider's default and has to be chosen before the line saves. An optional group starts empty and is stored only when the user picks it, because taking the provider's default once saved a paid extra they had never opened. Two of the same dish are two lines, so each can differ. Order now adds every line to the cart with the choices saved on it. Dish and restaurant suggestions send the candidate ids to the Anthropic API. It only ranks ids the server already read from the menu, so a name or a price never comes back from the model. The provider does not publish a delivery area, so a new restaurant is kept only when a straight line from this commute's home puts it near restaurants the commute already uses.",
+        "screenshots": [
+            "/Pictures/TrackEats/Home.jpg",
+            "/Pictures/TrackEats/Order.jpg",
+            "/Pictures/TrackEats/Notification.jpg",
+            "/Pictures/TrackEats/Commute.jpg",
+            "/Pictures/TrackEats/Suggestions.jpg"
+        ]
+    },
+    {
         "title": "We Communicate",
         "tech": "Next.js, React, TypeScript, Socket.IO, WebRTC, MongoDB, Upstash Redis, Vercel Blob, Tailwind",
         "description": "A chat app for 1:1 and group conversations, with voice and video calls, voice messages, and an offline outbox. You log in with an email or phone number and a password.",

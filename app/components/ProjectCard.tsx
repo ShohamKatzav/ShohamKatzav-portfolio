@@ -32,7 +32,7 @@ export default function ProjectCard({ project, activeTab, onOpen }: ProjectCardP
     return (
         <article
             onClick={onOpen}
-            className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border border-outline bg-surface transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-[0_18px_40px_-20px_var(--accent)] dark:border-hairline dark:hover:border-accent"
+            className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-lg border border-outline bg-surface transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-[0_18px_40px_-20px_var(--accent)] dark:border-hairline dark:hover:border-accent"
         >
             <div className="relative aspect-video overflow-hidden border-b border-hairline bg-sunken">
                 {isLoading && (
@@ -48,7 +48,7 @@ export default function ProjectCard({ project, activeTab, onOpen }: ProjectCardP
                         fill
                         sizes={crop ? "(min-width: 1024px) 1000px, 100vw" : "(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"}
                         priority
-                        className={`object-cover object-top transition duration-500 motion-safe:group-hover:scale-[1.03] ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                        className={`${project.screenshotFit === 'contain' ? 'object-contain' : 'object-cover object-top'} transition duration-500 motion-safe:group-hover:scale-[1.03] ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                         onLoad={() => setIsLoading(false)}
                         onError={(e) => {
                             e.currentTarget.src = '/Pictures/noImage.webp';
@@ -75,18 +75,20 @@ export default function ProjectCard({ project, activeTab, onOpen }: ProjectCardP
                             {primaryLabel} <ArrowUpRight size={16} aria-hidden />
                         </a>
                     )}
-                    <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={stop}
-                        className={primaryLink
-                            ? "inline-flex items-center gap-1.5 rounded-md border border-outline px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-fg"
-                            : "inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-label transition-colors hover:bg-accent-hover"
-                        }
-                    >
-                        <Github size={16} aria-hidden /> GitHub
-                    </a>
+                    {project.github && (
+                        <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={stop}
+                            className={primaryLink
+                                ? "inline-flex items-center gap-1.5 rounded-md border border-outline px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-fg"
+                                : "inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-label transition-colors hover:bg-accent-hover"
+                            }
+                        >
+                            <Github size={16} aria-hidden /> GitHub
+                        </a>
+                    )}
                     <button
                         type="button"
                         onClick={(e) => { stop(e); onOpen(); }}

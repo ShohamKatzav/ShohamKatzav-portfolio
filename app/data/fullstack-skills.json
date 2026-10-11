@@ -1,5 +1,7 @@
 [
     "React",
+    "React Native",
+    "Expo",
     "Next.js",
     "Angular",
     "TypeScript",
@@ -8,12 +10,15 @@
     ".NET",
     "Node.js",
     "Express.js",
+    "Anthropic API",
     "Socket.IO",
     "ASP.NET",
+    "PostgreSQL",
     "MongoDB",
     "SQL Server",
     "SQLite",
     "Redis",
+    "Docker",
     "Tailwind CSS",
     "Bootstrap"
 ]

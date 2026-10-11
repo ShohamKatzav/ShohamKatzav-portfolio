@@ -5,7 +5,7 @@ import fullStackProjectsData from './data/fullstack-projects.json';
 import qaProjectsData from './data/qa-projects.json';
 import NavBar from './components/NavBar';
 import RoleToggle from './components/RoleToggle';
-import ProjectCard from './components/ProjectCard';
+import ProjectCarousel from './components/ProjectCarousel';
 import SkillsSection from './components/SkillsSection';
 import CVSection from './components/CVSection';
 import ContactSection from './components/ContactSection';
@@ -24,7 +24,7 @@ export default function Portfolio() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen, selectedProject]);
 
-  const projects: Project[] = activeTab === 'fullstack' ? fullStackProjectsData : qaProjectsData;
+  const projects = (activeTab === 'fullstack' ? fullStackProjectsData : qaProjectsData) as Project[];
 
   return (
     <div className="min-h-screen text-fg">
@@ -66,13 +66,11 @@ export default function Portfolio() {
         <section id="projects" aria-labelledby="projects-title" className="border-t border-hairline py-16 md:py-20">
           <SectionHeading index="01" id="projects-title" title="Projects" />
 
-          <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <li key={project.title}>
-                <ProjectCard project={project} activeTab={activeTab} onOpen={() => setSelectedProject(project)} />
-              </li>
-            ))}
-          </ul>
+          <ProjectCarousel
+            projects={projects}
+            activeTab={activeTab}
+            onOpen={setSelectedProject}
+          />
         </section>
 
         <SkillsSection activeTab={activeTab} />

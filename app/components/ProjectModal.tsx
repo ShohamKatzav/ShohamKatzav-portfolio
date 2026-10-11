@@ -86,7 +86,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                             if (!isMobile) setIsFullscreen(true);
                                         }}
                                         fill
-                                        className={`cursor-zoom-in object-cover object-top transition-opacity duration-200 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                                        className={`cursor-zoom-in ${project.screenshotFit === 'contain' ? 'object-contain' : 'object-cover object-top'} transition-opacity duration-200 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                                         alt={`${project.title} screenshot ${currentScreenshot + 1} of ${project.screenshots.length}`}
                                         sizes="(max-width: 896px) 100vw, 832px"
                                         priority
@@ -185,10 +185,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                     View Report
                                 </a>
                             )}
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className={secondaryBtn}>
-                                <Github size={18} aria-hidden />
-                                View Source Code
-                            </a>
+                            {project.github && (
+                                <a href={project.github} target="_blank" rel="noopener noreferrer" className={secondaryBtn}>
+                                    <Github size={18} aria-hidden />
+                                    View Source Code
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>
