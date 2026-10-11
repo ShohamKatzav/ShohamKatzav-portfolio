@@ -4,7 +4,8 @@ export default interface Project {
     title: string;
     tech: string;
     description: string;
-    github: string;
+    github?: string;
+    screenshotFit?: "cover" | "contain";
     demo?: string;
     reportUrl?: string;
     credentials?: Credentials[];

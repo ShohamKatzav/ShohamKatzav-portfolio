@@ -9,7 +9,7 @@ const cvs = [
     {
         id: 'fullstack',
         label: 'Full Stack Developer CV',
-        blurb: 'React, Next.js, Angular, .NET, and Node.js work, with the apps you can open above.',
+        blurb: 'React, React Native, Next.js, Angular, .NET, and Node.js work, with the apps you can open above.',
         href: process.env.NEXT_PUBLIC_CV_FULLSTACK_URL?.trim() || '/Shoham_Katzav_Fullstack_CV.pdf',
     },
     {
