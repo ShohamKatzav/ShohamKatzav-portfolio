@@ -67,7 +67,7 @@ export default function ProjectCarousel({ projects, activeTab, onOpen }: Project
             </div>
             <ul
                 ref={scrollerRef}
-                className="flex snap-x snap-mandatory gap-6 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="relative -mt-2 -mb-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pt-2 pb-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
                 {projects.map((project) => (
                     <li key={`${activeTab}-${project.title}`} className="flex w-full shrink-0 snap-start md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">

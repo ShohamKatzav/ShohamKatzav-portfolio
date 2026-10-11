@@ -47,13 +47,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
 
     return (
         <>
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-3 backdrop-blur-sm sm:p-4" onClick={onClose}>
+            <div className="fixed inset-0 z-50 flex overflow-hidden bg-black/70 backdrop-blur-sm md:items-center md:justify-center md:p-4" onClick={onClose}>
                 <div
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="project-modal-title"
                     onClick={(e) => e.stopPropagation()}
-                    className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-xl border border-outline bg-surface shadow-[0_40px_120px_-40px_var(--accent)]"
+                    className="relative h-full w-full max-w-full min-w-0 overflow-x-hidden overflow-y-auto overscroll-contain bg-surface md:h-auto md:max-h-[90vh] md:max-w-4xl md:rounded-xl md:border md:border-outline md:shadow-[0_40px_120px_-40px_var(--accent)]"
                 >
                     <div className="sticky top-0 z-20 flex h-0 justify-end">
                         <button
@@ -123,7 +123,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                         )}
 
                         <h2 id="project-modal-title" className="font-serif text-3xl font-semibold text-balance text-fg md:text-4xl">{project.title}</h2>
-                        <p className="mt-2 font-medium text-accent">{project.tech}</p>
+                        <p className="mt-2 font-medium wrap-anywhere text-accent">{project.tech}</p>
                         <p className="mt-4 text-lg leading-relaxed text-fg">{project.description}</p>
 
                         {project.features && project.features.length > 0 && (
@@ -151,9 +151,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                             <div className="mt-8 rounded-md border border-outline bg-sunken p-4">
                                 <h3 className="font-medium text-fg">Demo accounts</h3>
                                 <p className="mt-1 text-sm text-muted">Log in with one of these instead of signing up.</p>
-                                <dl className="mt-3 grid gap-4 sm:grid-cols-2">
+                                <dl className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     {project.credentials.map((cred, credIdx) => (
-                                        <div key={credIdx} className="text-sm">
+                                        <div key={credIdx} className="min-w-0 text-sm">
                                             <dt className="font-medium text-accent">
                                                 {cred.authorization
                                                     ? cred.authorization.slice(0, 1).toUpperCase() + cred.authorization.slice(1)
@@ -161,11 +161,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalPropertie
                                             </dt>
                                             <dd className="mt-1 text-fg">
                                                 <span className="text-muted">Username: </span>
-                                                <span className="font-mono break-all">{cred.username}</span>
+                                                <span className="font-mono wrap-anywhere">{cred.username}</span>
                                             </dd>
                                             <dd className="text-fg">
                                                 <span className="text-muted">Password: </span>
-                                                <span className="font-mono">{cred.password}</span>
+                                                <span className="font-mono wrap-anywhere">{cred.password}</span>
                                             </dd>
                                         </div>
                                     ))}
